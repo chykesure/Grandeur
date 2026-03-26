@@ -49,7 +49,7 @@ export default function HeroSection() {
             </div>
 
             {/* Sun Logo - Optimized for Mobile (Lower & Cleaner) */}
-            <div className="absolute top-16 left-5 sm:top-20 sm:left-6 md:top-8 md:left-8 lg:left-16 z-30">
+            <div className="absolute top-24 left-5 sm:top-20 sm:left-6 md:top-8 md:left-8 lg:left-16 z-30">
                 <motion.div
                     animate={{ rotate: 360, y: [0, -12, 0] }}
                     transition={{
@@ -63,7 +63,7 @@ export default function HeroSection() {
                         alt="Grandeur Sun Logo"
                         width={280}
                         height={280}
-                        className="w-24 sm:w-28 md:w-36 lg:w-44 xl:w-52"
+                        className="w-32 sm:w-28 md:w-36 lg:w-44 xl:w-52"
                         priority
                     />
                 </motion.div>
@@ -81,11 +81,16 @@ export default function HeroSection() {
                         className="w-full lg:col-span-7 space-y-6 md:space-y-8 lg:space-y-10 pt-16 sm:pt-20 md:pt-12 lg:pt-8"
                     >
                         <motion.div variants={fadeInUp}>
-                            <h1 className="text-[2.65rem] leading-[1.08] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] font-bold tracking-tighter text-balance">
-                                <span className="text-[#2346A6]">Your entire</span>{" "}
-                                <span className="text-[#0088FF]">marketing</span>{" "}
-                                <span className="italic font-serif font-medium text-[#0088FF]">operations</span>{" "}
-                                <span className="italic font-serif font-medium text-[#2346A6]">orchestrated</span>
+                            <h1 className="text-[2.65rem] leading-[1.08] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] font-bold tracking-tighter">
+                                {/* Mobile: Force pairs together | Desktop: Natural wrapping */}
+                                <span className="whitespace-nowrap sm:whitespace-normal inline">
+                                    <span className="text-[#2346A6]">Your entire</span>{" "}
+                                    <span className="text-[#0088FF]">marketing</span>
+                                </span>{" "}
+                                <span className="whitespace-nowrap sm:whitespace-normal inline">
+                                    <span className="italic font-serif font-medium text-[#0088FF]">operations</span>{" "}
+                                    <span className="italic font-serif font-medium text-[#2346A6]">orchestrated</span>
+                                </span>
                             </h1>
                         </motion.div>
 
