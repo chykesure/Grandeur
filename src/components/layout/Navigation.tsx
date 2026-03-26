@@ -1,3 +1,4 @@
+// src/components/layout/Navigation.tsx
 'use client';
 
 import { motion } from 'framer-motion';
@@ -5,8 +6,11 @@ import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import Image from 'next/image';
+import { useModalStore } from '@/store/modalStore'
+
 
 export default function Navigation() {
+    const openModal = useModalStore((state) => state.openModal)
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [activeItem, setActiveItem] = useState<string>('Product');
 
@@ -68,7 +72,9 @@ export default function Navigation() {
                     <div className="flex items-center gap-2">
                         {/* Desktop CTA Button - Professional hover effect */}
                         <div className="hidden md:block">
-                            <button className="relative overflow-hidden rounded-full px-6 py-2.5 text-sm font-semibold text-white shadow-lg transition-all duration-300 group bg-gradient-to-r from-blue-600 to-indigo-600 hover:shadow-blue-500/30 hover:shadow-xl hover:scale-105 animate-bounce"
+                            <button
+                                onClick={openModal}
+                                className="relative overflow-hidden rounded-full px-6 py-2.5 text-sm font-semibold text-white shadow-lg transition-all duration-300 group bg-gradient-to-r from-blue-600 to-indigo-600 hover:shadow-blue-500/30 hover:shadow-xl hover:scale-105 animate-bounce"
                                 style={{ animationDuration: '2s', animationIterationCount: 'infinite' }}
                             >
                                 {/* Glitter particles */}

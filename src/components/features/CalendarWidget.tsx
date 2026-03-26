@@ -7,6 +7,7 @@ import { fadeInUp, staggerContainer } from '@/lib/animations';
 import { Calendar, Clock, AlertCircle, CheckCircle2, Plus, ChevronLeft, ChevronRight, Send, Target, Zap, Pencil, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { useModalStore } from '@/store/modalStore'
 
 import { ArrowRight, CheckCircle, XCircle } from 'lucide-react';
 
@@ -39,10 +40,13 @@ const frameworks = [
 
 export default function CalenderWidget() {
 
+    const isModalOpen = useModalStore((state) => state.isModalOpen)
+    const closeModal = useModalStore((state) => state.closeModal)
+    const openModal = useModalStore((state) => state.openModal)
+
     // ============================================
     // STEP 1: Add useState HERE (inside component, at the top)
     // ============================================
-    const [isModalOpen, setIsModalOpen] = useState(true)
     const [timeLeft, setTimeLeft] = useState({
         months: 0,
         days: 0,
@@ -127,7 +131,7 @@ export default function CalenderWidget() {
                         >
                             <Button
                                 size="lg"
-                                onClick={() => setIsModalOpen(true)} // Add this line
+                                onClick={openModal} // Add this line
                                 className="bg-gradient-to-r from-[#0088FF] via-[#43A8FF] to-[#0379E0] hover:opacity-90 text-white px-8 py-6 rounded-xl text-lg font-semibold shadow-lg transition-all hover:shadow-xl hover:scale-105"
                             >
                                 Join the waitlist
@@ -641,7 +645,7 @@ export default function CalenderWidget() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6"
-                        onClick={() => setIsModalOpen(false)}
+                        onClick={openModal}
                     >
                         {/* Backdrop */}
                         <div className="absolute inset-0 bg-black/60 backdrop-blur-md" />
@@ -655,7 +659,7 @@ export default function CalenderWidget() {
                         >
                             {/* Close Button */}
                             <button
-                                onClick={() => setIsModalOpen(false)}
+                                onClick={closeModal}
                                 className="absolute top-6 right-6 z-20 p-2 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-md transition-colors"
                             >
                                 <X className="w-5 h-5 text-gray-800 md:text-white" />
