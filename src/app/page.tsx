@@ -10,14 +10,14 @@ export default function Home() {
       <Navigation />
 
       {/* HERO SECTION */}
-      <section className="bg-gradient-to-br from-slate-50 via-white to-blue-50 pb-12 lg:pb-16">
+      <section className="bg-gradient-to-br from-slate-50 via-white to-blue-50 pb-2 lg:pb-16">
         <div className="w-full">
           <HeroSection />
         </div>
       </section>
 
       {/* CALENDAR WIDGET SECTION - Reduced gap */}
-      <section className="pt-8 pb-14 lg:pt-10 lg:pb-16 bg-slate-50">
+      <section className="pt-8 pb-8 lg:pt-10 lg:pb-16 bg-slate-50">
         <div className="w-full max-w-7xl mx-auto px-6 lg:px-8">
           <CalenderWidget />
         </div>

@@ -86,7 +86,7 @@ export default function CalenderWidget() {
 
     return (
         <section
-            className="relative min-h-screen bg-transparent py-16 md:py-24"
+            className="relative min-h-screen bg-transparent pt-16 pb-1 md:pt-24 md:pb-3"
             style={{
                 width: '100vw',
                 position: 'relative',
@@ -514,7 +514,7 @@ export default function CalenderWidget() {
                                 background: 'linear-gradient(135deg, #FF7F00 0%, #FF3202 15%, #FEE73E 30%, #1EFF00 50%, #0088FF 65%, #FF00F3 85%, #8700FF 100%)'
                             }}
                         >
-                            <div className="bg-white rounded-[14px] p-6 relative min-h-[360px]">
+                            <div className="bg-white rounded-[14px] p-6 relative min-h-[250px]">
 
                                 {/* Central Hub Icon - positioned on left side inside the container */}
                                 <div className="absolute -left-40 top-1/2 -translate-y-1/2 z-10 hidden md:block">
