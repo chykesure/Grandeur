@@ -2,7 +2,6 @@
 import Navigation from '@/components/layout/Navigation';
 import HeroSection from '@/components/hero/HeroSection';
 import CalenderWidget from '@/components/features/CalendarWidget';
-import CampaignWidget from '@/components/features/CampaignWidget';
 
 export default function Home() {
   return (
