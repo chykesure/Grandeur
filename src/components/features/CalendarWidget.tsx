@@ -560,7 +560,7 @@ export default function CalenderWidget() {
                                 </svg>
 
                                 {/* Floating Cards - Stacked on Right */}
-                                <div className="ml-0 md:ml-16 space-y-3 relative z-10 flex flex-col items-center md:items-start">
+                                <div className="ml-0 md:ml-16 space-y-3 relative z-10 flex flex-col items-center md:items-start px-2 sm:px-0">
                                     {/* Banned Claims Card - Red */}
                                     <motion.div
                                         initial={{ opacity: 0, x: 20 }}
@@ -571,15 +571,15 @@ export default function CalenderWidget() {
                                             stiffness: 300,
                                             damping: 10
                                         }}
-                                        className="bg-white rounded-xl border border-red-200 shadow-sm p-4 hover:shadow-md transition-shadow w-full max-w-xs"
+                                        className="bg-white rounded-xl border border-red-200 shadow-sm p-3 sm:p-4 hover:shadow-md transition-shadow w-full sm:max-w-xs md:max-w-sm"
                                     >
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-9 h-9 rounded-xl bg-red-100 flex items-center justify-center flex-shrink-0">
-                                                <XCircle className="w-5 h-5 text-red-500" />
+                                        <div className="flex items-center gap-2 sm:gap-3">
+                                            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-red-100 flex items-center justify-center flex-shrink-0">
+                                                <XCircle className="w-4 h-4 sm:w-5 sm:h-5 text-red-500" />
                                             </div>
-                                            <div>
-                                                <p className="font-semibold text-sm text-red-600">Banned claims</p>
-                                                <p className="text-xs text-gray-400">Officially recommended by legal team</p>
+                                            <div className="min-w-0 flex-1">
+                                                <p className="font-semibold text-xs sm:text-sm text-red-600 truncate">Banned claims</p>
+                                                <p className="text-[10px] sm:text-xs text-gray-400 truncate">Officially recommended by legal team</p>
                                             </div>
                                         </div>
                                     </motion.div>
@@ -594,15 +594,15 @@ export default function CalenderWidget() {
                                             stiffness: 300,
                                             damping: 10
                                         }}
-                                        className="bg-white rounded-xl border border-amber-200 shadow-sm p-4 hover:shadow-md transition-shadow w-full max-w-xs"
+                                        className="bg-white rounded-xl border border-amber-200 shadow-sm p-3 sm:p-4 hover:shadow-md transition-shadow w-full sm:max-w-xs md:max-w-sm"
                                     >
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-9 h-9 rounded-xl bg-amber-100 flex items-center justify-center flex-shrink-0">
-                                                <AlertCircle className="w-5 h-5 text-amber-500" />
+                                        <div className="flex items-center gap-2 sm:gap-3">
+                                            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-amber-100 flex items-center justify-center flex-shrink-0">
+                                                <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 text-amber-500" />
                                             </div>
-                                            <div>
-                                                <p className="font-semibold text-sm text-amber-700">Do's and Don'ts</p>
-                                                <p className="text-xs text-gray-400">Resolve all comments within 24 hrs.</p>
+                                            <div className="min-w-0 flex-1">
+                                                <p className="font-semibold text-xs sm:text-sm text-amber-700 truncate">Do's and Don'ts</p>
+                                                <p className="text-[10px] sm:text-xs text-gray-400 truncate">Resolve all comments within 24 hrs.</p>
                                             </div>
                                         </div>
                                     </motion.div>
@@ -617,15 +617,15 @@ export default function CalenderWidget() {
                                             stiffness: 300,
                                             damping: 10
                                         }}
-                                        className="bg-white rounded-xl border border-blue-200 shadow-sm p-4 hover:shadow-md transition-shadow w-full max-w-xs"
+                                        className="bg-white rounded-xl border border-blue-200 shadow-sm p-3 sm:p-4 hover:shadow-md transition-shadow w-full sm:max-w-xs md:max-w-sm"
                                     >
-                                        <div className="flex items-start gap-3">
-                                            <div className="w-9 h-9 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0">
-                                                <Pencil className="w-5 h-5 text-blue-600" />
+                                        <div className="flex items-start gap-2 sm:gap-3">
+                                            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0">
+                                                <Pencil className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
                                             </div>
-                                            <div>
-                                                <p className="font-semibold text-sm text-blue-700">Hooks</p>
-                                                <p className="text-xs text-gray-400 mt-1">
+                                            <div className="min-w-0 flex-1">
+                                                <p className="font-semibold text-xs sm:text-sm text-blue-700">Hooks</p>
+                                                <p className="text-[10px] sm:text-xs text-gray-400 mt-0.5 sm:mt-1 leading-snug">
                                                     Efficient lead gen and proven ROI
                                                     <br />
                                                     Affordable scaling solutions
