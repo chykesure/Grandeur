@@ -196,3 +196,9 @@
 .hover-shimmer:hover .shimmer-effect {
     animation: shimmer 0.7s ease-out;
 }
+
+/* Hide Next.js dev indicator */
+[data-nextjs-dialog-overlay],
+[data-nextjs-toast-errors-fallback-position] {
+  display: none !important;
+}
