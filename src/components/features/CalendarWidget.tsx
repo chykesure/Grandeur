@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { fadeInUp, staggerContainer } from '@/lib/animations';
 import { Calendar, Clock, AlertCircle, CheckCircle2, Plus, ChevronLeft, ChevronRight, Send, Target, Zap, Pencil, X } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 import { ArrowRight, CheckCircle, XCircle } from 'lucide-react';
@@ -36,9 +36,50 @@ const frameworks = [
     { name: 'New blueprint', color: 'bg-gray-400', active: false },
 ];
 
+
 export default function CalenderWidget() {
+
+    // ============================================
+    // STEP 1: Add useState HERE (inside component, at the top)
+    // ============================================
+    const [isModalOpen, setIsModalOpen] = useState(true)
+    const [timeLeft, setTimeLeft] = useState({
+        months: 0,
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+    })
+
+    // ============================================
+    // STEP 2: Add useEffect HERE (after useState, before return)
+    // ============================================
+    useEffect(() => {
+        const launchDate = new Date('2026-03-31T23:59:59')
+
+        const calculateTimeLeft = () => {
+            const now = new Date()
+            const diff = launchDate.getTime() - now.getTime()
+
+            if (diff > 0) {
+                const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24))
+                setTimeLeft({
+                    months: Math.floor(totalDays / 30),
+                    days: totalDays % 30,
+                    hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+                    minutes: Math.floor((diff / (1000 * 60)) % 60),
+                    seconds: Math.floor((diff / 1000) % 60)
+                })
+            }
+        }
+
+        calculateTimeLeft()
+        const timer = setInterval(calculateTimeLeft, 1000)
+        return () => clearInterval(timer)
+    }, [])
+
     const [selectedFramework, setSelectedFramework] = useState('template-x');
-    const [isModalOpen, setIsModalOpen] = useState(false); // Add this line
+
     return (
         <section
             className="relative min-h-screen bg-transparent py-16 md:py-24"
@@ -276,7 +317,7 @@ export default function CalenderWidget() {
                 >
                     {/* Connecting Lines SVG - adjusted for 3-column layout */}
                     <svg
-                        className="absolute -left-47 top-0 w-full h-full pointer-events-none"
+                        className="absolute -left-47 top-0 w-full h-full pointer-events-none hidden md:block"
                         viewBox="0 0 400 400"
                         fill="none"
                     >
@@ -355,10 +396,9 @@ export default function CalenderWidget() {
                         </div>
                     </motion.div>
 
-                    {/* Center - Template X Panel */}
                     <motion.div
                         variants={fadeInUp}
-                        className="relative left-20 flex flex-col gap-5 w-full max-w-md"
+                        className="relative md:left-20 flex flex-col gap-5 w-full max-w-md mx-auto md:mx-0"
                     >
                         <div className="bg-white rounded-xl border-2 border-orange-400 shadow-sm p-6">
                             <h3 className="text-lg font-semibold text-gray-900 mb-4">Template X</h3>
@@ -473,7 +513,7 @@ export default function CalenderWidget() {
                             <div className="bg-white rounded-[14px] p-6 relative min-h-[360px]">
 
                                 {/* Central Hub Icon - positioned on left side inside the container */}
-                                <div className="absolute -left-40 top-1/2 -translate-y-1/2 z-10">
+                                <div className="absolute -left-40 top-1/2 -translate-y-1/2 z-10 hidden md:block">
                                     <div className="w-12 h-12 rounded-xl overflow-hidden shadow-md bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center">
                                         <Image
                                             src="/my_logo.png"
@@ -488,7 +528,7 @@ export default function CalenderWidget() {
 
                                 {/* Connecting Lines SVG */}
                                 <svg
-                                    className="absolute -left-38 top-0 w-full h-full pointer-events-none z-0"
+                                    className="absolute -left-38 top-0 w-full h-full pointer-events-none z-0 hidden md:block"
                                     viewBox="0 0 400 400"
                                     fill="none"
                                 >
@@ -516,8 +556,7 @@ export default function CalenderWidget() {
                                 </svg>
 
                                 {/* Floating Cards - Stacked on Right */}
-                                <div className="ml-16 space-y-3 relative z-10">
-                                    {/* Banned Claims Card - Red */}
+                                <div className="ml-0 md:ml-16 space-y-3 relative z-10 flex flex-col items-center md:items-start">
                                     {/* Banned Claims Card - Red */}
                                     <motion.div
                                         initial={{ opacity: 0, x: 20 }}
@@ -528,7 +567,7 @@ export default function CalenderWidget() {
                                             stiffness: 300,
                                             damping: 10
                                         }}
-                                        className="bg-white rounded-xl border border-red-200 shadow-sm p-4 hover:shadow-md transition-shadow"
+                                        className="bg-white rounded-xl border border-red-200 shadow-sm p-4 hover:shadow-md transition-shadow w-full max-w-xs"
                                     >
                                         <div className="flex items-center gap-3">
                                             <div className="w-9 h-9 rounded-xl bg-red-100 flex items-center justify-center flex-shrink-0">
@@ -551,7 +590,7 @@ export default function CalenderWidget() {
                                             stiffness: 300,
                                             damping: 10
                                         }}
-                                        className="bg-white rounded-xl border border-amber-200 shadow-sm p-4 hover:shadow-md transition-shadow"
+                                        className="bg-white rounded-xl border border-amber-200 shadow-sm p-4 hover:shadow-md transition-shadow w-full max-w-xs"
                                     >
                                         <div className="flex items-center gap-3">
                                             <div className="w-9 h-9 rounded-xl bg-amber-100 flex items-center justify-center flex-shrink-0">
@@ -574,7 +613,7 @@ export default function CalenderWidget() {
                                             stiffness: 300,
                                             damping: 10
                                         }}
-                                        className="bg-white rounded-xl border border-blue-200 shadow-sm p-4 hover:shadow-md transition-shadow"
+                                        className="bg-white rounded-xl border border-blue-200 shadow-sm p-4 hover:shadow-md transition-shadow w-full max-w-xs"
                                     >
                                         <div className="flex items-start gap-3">
                                             <div className="w-9 h-9 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0">
@@ -614,7 +653,7 @@ export default function CalenderWidget() {
                             className="relative bg-white rounded-[32px] shadow-2xl max-w-5xl w-full overflow-hidden z-10 flex flex-col md:flex-row min-h-[500px]"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            {/* Close Button - Abstracted for the new layout */}
+                            {/* Close Button */}
                             <button
                                 onClick={() => setIsModalOpen(false)}
                                 className="absolute top-6 right-6 z-20 p-2 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-md transition-colors"
@@ -624,27 +663,34 @@ export default function CalenderWidget() {
 
                             {/* LEFT COLUMN: Content & Form */}
                             <div className="flex-1 p-8 md:p-14 flex flex-col justify-center text-center md:text-left">
-                                <h2 className="text-3xl md:text-4xl font-bold text-[#3B82F6] leading-tight mb-4">
+                                <h2 className="text-2xl md:text-4xl font-bold text-[#418CFF] leading-tight mb-4">
                                     Plan, generate, recruit and approve for your Campaigns... <br />
-                                    <span className="text-[#1E40AF]">All in one place.</span>
+                                    <span className="text-[#418CFF]">All in one place.</span>
                                 </h2>
 
-                                <p className="text-blue-400 text-lg mb-8">
-                                    Join the waitlist today and <span className="font-bold text-blue-600">lock 40% off</span> your first year when we launch.
+                                <p className="text-[#94BFFF] text-lg mb-8">
+                                    Join the waitlist today and <span className="font-bold text-[#1071C5]">lock 40% off</span> your first year when we launch.
                                 </p>
 
                                 {/* Countdown Timer */}
                                 <div className="flex justify-center md:justify-start gap-3 mb-10">
                                     {[
-                                        { label: 'Months', val: '04' },
-                                        { label: 'Days', val: '04' },
-                                        { label: 'Hours', val: '04' }
+                                        { label: 'Months', val: String(timeLeft.months).padStart(2, '0') },
+                                        { label: 'Days', val: String(timeLeft.days).padStart(2, '0') },
+                                        { label: 'Hours', val: String(timeLeft.hours).padStart(2, '0') },
+                                        { label: 'Minutes', val: String(timeLeft.minutes).padStart(2, '0') },
+                                        { label: 'Seconds', val: String(timeLeft.seconds).padStart(2, '0') }
                                     ].map((item, i) => (
                                         <div key={i} className="flex flex-col items-center">
-                                            <span className="text-[10px] uppercase tracking-widest text-gray-400 mb-1 font-semibold">{item.label}</span>
+                                            <span className="text-[10px] uppercase tracking-widest text-gray-400 mb-2 font-semibold">
+                                                {item.label}
+                                            </span>
                                             <div className="flex gap-1">
                                                 {item.val.split('').map((digit, di) => (
-                                                    <div key={di} className="w-10 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-2xl font-bold text-blue-500 shadow-sm border border-blue-100">
+                                                    <div
+                                                        key={di}
+                                                        className="w-10 h-14 bg-[#E8F4FD] rounded-lg flex items-center justify-center text-2xl font-bold text-[#007BFF] border border-[#B8D4F0]"
+                                                    >
                                                         {digit}
                                                     </div>
                                                 ))}
@@ -653,7 +699,7 @@ export default function CalenderWidget() {
                                     ))}
                                 </div>
 
-                                {/* Simplified Form to match image */}
+                                {/* Form */}
                                 <form className="relative max-w-md">
                                     <input
                                         type="email"
@@ -662,7 +708,8 @@ export default function CalenderWidget() {
                                     />
                                     <Button
                                         type="submit"
-                                        className="w-full bg-gradient-to-r from-[#0066FF] to-[#0044CC] hover:from-[#0055EE] hover:to-[#0033BB] text-white py-5 rounded-2xl text-lg font-bold shadow-lg shadow-blue-200 transition-transform active:scale-95"
+                                        className="w-full text-white py-5 rounded-2xl text-lg font-bold shadow-lg shadow-blue-500/25 transition-transform active:scale-95"
+                                        style={{ background: 'linear-gradient(90deg, #0088FF 0%, #3F3BA9 54.66%, #0379E0 100%)' }}
                                     >
                                         Join the waitlist
                                     </Button>
@@ -670,22 +717,17 @@ export default function CalenderWidget() {
                             </div>
 
                             {/* RIGHT COLUMN: 3D Visual Section */}
-                            <div className="hidden md:flex flex-1 relative bg-gradient-to-br from-[#E0F2FE] via-[#DBEAFE] to-[#BFDBFE] items-center justify-center">
-                                {/* PRO TIP: For the "Orb" effect in the image, 
-                    use an <img> with an object-cover or a 
-                    Spline/Three.js scene if you want it interactive. 
-                */}
-                                <div className="relative w-full h-full flex items-center justify-center p-12">
-                                    <img
-                                        src="/waitlist.png"
-                                        alt="Platform Preview"
-                                        className="w-full h-auto object-contain drop-shadow-2xl"
-                                    />
+                            <div className="hidden md:flex flex-1 relative bg-gradient-to-br from-[#E0F2FE] via-[#DBEAFE] to-[#BFDBFE] items-center justify-center overflow-hidden">
+                                {/* Background Glows */}
+                                <div className="absolute top-1/4 left-1/4 w-40 h-40 bg-blue-400/30 blur-[100px] rounded-full" />
+                                <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-indigo-400/25 blur-[120px] rounded-full" />
 
-                                    {/* Background Glows to match the image aesthetics */}
-                                    <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-blue-400/20 blur-[80px] rounded-full" />
-                                    <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-indigo-400/20 blur-[100px] rounded-full" />
-                                </div>
+                                {/* Image - Full Fill */}
+                                <img
+                                    src="/waitlist.png"
+                                    alt="Platform Preview"
+                                    className="absolute inset-0 w-full h-full object-cover"
+                                />
                             </div>
                         </motion.div>
                     </motion.div>

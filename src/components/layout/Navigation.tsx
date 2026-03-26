@@ -36,9 +36,7 @@ export default function Navigation() {
                                 priority
                             />
                         </div>
-                        <span className="font-serif font-semibold text-base sm:text-xl text-gray-900 tracking-[0.15em] sm:tracking-[0.2em] uppercase whitespace-nowrap">
-                            Grandeur
-                        </span>
+
                     </div>
 
                     {/* Desktop Navigation - Increased font size */}
@@ -70,9 +68,20 @@ export default function Navigation() {
                     <div className="flex items-center gap-2">
                         {/* Desktop CTA Button - Professional hover effect */}
                         <div className="hidden md:block">
-                            <button className="relative overflow-hidden rounded-full px-6 py-2.5 text-sm font-semibold text-white shadow-lg transition-all duration-300 group bg-gradient-to-r from-blue-600 to-indigo-600 hover:shadow-blue-500/30 hover:shadow-xl hover:scale-105">
+                            <button className="relative overflow-hidden rounded-full px-6 py-2.5 text-sm font-semibold text-white shadow-lg transition-all duration-300 group bg-gradient-to-r from-blue-600 to-indigo-600 hover:shadow-blue-500/30 hover:shadow-xl hover:scale-105 animate-bounce"
+                                style={{ animationDuration: '2s', animationIterationCount: 'infinite' }}
+                            >
+                                {/* Glitter particles */}
+                                <span className="absolute top-0 left-1/4 w-1 h-1 bg-white rounded-full animate-ping" style={{ animationDuration: '1.5s' }} />
+                                <span className="absolute top-1/3 left-1/2 w-1 h-1 bg-white rounded-full animate-ping" style={{ animationDuration: '2s', animationDelay: '0.5s' }} />
+                                <span className="absolute bottom-1/4 right-1/4 w-1 h-1 bg-white rounded-full animate-ping" style={{ animationDuration: '1.8s', animationDelay: '0.3s' }} />
+
                                 {/* Shimmer effect */}
                                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
+
+                                {/* Sparkle overlay */}
+                                <span className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent animate-pulse" />
+
                                 {/* Button text */}
                                 <span className="relative z-10">Join waitlist</span>
                             </button>
@@ -88,7 +97,7 @@ export default function Navigation() {
                     </div>
                 </div>
             </div>
-            
+
             {/* Mobile Menu */}
             {mobileMenuOpen && (
                 <motion.div
@@ -107,8 +116,8 @@ export default function Navigation() {
                                     setMobileMenuOpen(false);
                                 }}
                                 className={`block py-3 text-lg font-medium transition-colors border-b border-gray-50 last:border-0 ${activeItem === item
-                                        ? 'text-[#0088FF]'
-                                        : 'text-gray-700 hover:text-[#0088FF]'
+                                    ? 'text-[#0088FF]'
+                                    : 'text-gray-700 hover:text-[#0088FF]'
                                     }`}
                             >
                                 {item}
