@@ -81,7 +81,7 @@ export default function HeroSection() {
                         className="w-full lg:col-span-7 space-y-6 md:space-y-8 lg:space-y-10 pt-16 sm:pt-20 md:pt-12 lg:pt-8"
                     >
                         <motion.div variants={fadeInUp}>
-                            <h1 className="text-[2.65rem] leading-[1.08] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] font-bold tracking-tighter text-center sm:text-left">
+                            <h1 className="text-[2.65rem] leading-[1.08] sm:text-4xl md:text-5xl lg:text-6xl xl:text-[5.5rem] font-bold tracking-tighter text-center sm:text-left">
                                 {/* Mobile: Force pairs together | Desktop: Natural wrapping */}
                                 <span className="whitespace-nowrap sm:whitespace-normal inline">
                                     <span className="text-[#2346A6]">Your entire</span>{" "}

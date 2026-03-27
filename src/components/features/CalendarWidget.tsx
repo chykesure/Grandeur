@@ -178,8 +178,8 @@ export default function CalenderWidget() {
                             }}
                         >
                             {/* Top Bar */}
-                            <div className="px-4 md:px-5 py-3 flex items-center justify-between border-b border-gray-100 bg-gray-50/80">
-                                <div className="flex items-center gap-2">
+                            <div className="px-4 md:px-5 py-3 flex items-center justify-between border-b border-gray-100 bg-gray-50/80 bg-white" style={{ borderTopLeftRadius: '13px', borderTopRightRadius: '15px' }}>
+                                <div className="flex items-center gap-2 ">
                                     <Clock className="w-4 h-4 text-gray-400" />
                                     <span className="text-sm text-gray-500">GMT+1 Berlin, Germany</span>
                                 </div>
@@ -189,7 +189,7 @@ export default function CalenderWidget() {
                             </div>
 
                             {/* Main Content - Stack on mobile, side-by-side on larger screens */}
-                            <div className="bg-white flex flex-col lg:flex-row">
+                            <div className="bg-white flex flex-col lg:flex-row" style={{ borderBottomLeftRadius: '13px', borderBottomRightRadius: '15px' }}>
 
                                 {/* Calendar Panel */}
                                 <div className="lg:w-1/2 p-5 border-b lg:border-b-0 lg:border-r border-gray-100">
